@@ -53,7 +53,7 @@ def get_summary(text):
     if len(text) >= 3000:
         select_length = int(len(sentence_tokens)*0.10)
     else:
-        select_length = int(len(sentence_tokens)*0.10)
+        select_length = int(len(sentence_tokens)*0.15)
     summary  = nlargest(select_length, sentence_scores, key=sentence_scores.get)
     summary = [word.text  for word in summary]
     summary = " ".join(summary)
