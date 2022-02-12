@@ -31,7 +31,7 @@ if choice == "Custom Text Summarization":
         text = st.text_area(label="Enter Your Text or story", height=350, placeholder="Enter Your Text or story or your article iit can be of any length")
         
         if st.button("Get Summary and Headline"):
-            summary = get_summary(text)
+            summary,rend = get_summary(text)
     
             with col2:
                 try:
@@ -39,5 +39,6 @@ if choice == "Custom Text Summarization":
                     st.code(summary)
                     st.write("Text Headline")
                     st.code(len(text))
+                    rend
                 except NameError:
                     pass

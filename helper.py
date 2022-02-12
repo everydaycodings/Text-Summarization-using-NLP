@@ -1,9 +1,12 @@
+from cProfile import label
+from re import S
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-from spacy import load
+from spacy import load, displacy
 import en_core_web_sm
 from string import punctuation
 from heapq import nlargest
+import spacy_streamlit
 
 
 nlp= en_core_web_sm.load()
@@ -55,8 +58,10 @@ def get_summary(text):
     summary  = nlargest(select_length, sentence_scores, key=sentence_scores.get)
     summary = [word.text  for word in summary]
     summary = " ".join(summary)
+    summ = nlp(summary)
+    rend = spacy_streamlit.visualize_ner(summ, labels=nlp.get_pipe("ner").labels)
 
-    return summary
+    return summary, rend
 
 
 
