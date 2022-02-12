@@ -1,4 +1,7 @@
+from prometheus_client import Summary
 import streamlit as st
+from helper import get_summary
+
 
 st.set_page_config(
      page_title="Data Analysis Web App",
@@ -25,8 +28,16 @@ if choice == "Custom Text Summarization":
     col1, col2 = st.columns(2)
 
     with col1:
-        text = st.text_area(label="Enter Your Text or story", height=250, placeholder="Enter Your Text or story or your article iit can be of any length")
+        text = st.text_area(label="Enter Your Text or story", height=350, placeholder="Enter Your Text or story or your article iit can be of any length")
+        
+        if st.button("Get Summary and Headline"):
+            summary = get_summary(text)
     
-    with col2:
-        st.write("Your Summary and Headline")
-        st.code("This is your summary")
+            with col2:
+                try:
+                    st.write("Text Summary")
+                    st.code(summary)
+                    st.write("Text Headline")
+                    st.code(len(text))
+                except NameError:
+                    pass
