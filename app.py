@@ -35,7 +35,7 @@ if choice == "Custom Text Summarization":
     
             with col2:
                 try:
-                    st.write("Text Summary")
+                    st.write("Text Summary (Summary length: {})".format(len(summary)))
                     st.code(summary)
                     st.write("Text Headline")
                     st.code(len(text))
