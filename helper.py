@@ -113,8 +113,8 @@ def fetch_news():
 
 
 def get_summary(text):
+    
     doc = nlp(text)
-    tokens = [token.text for token in doc]
 
     word_frequencies = word_frequency(doc)
     for word in word_frequencies.keys():
