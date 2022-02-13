@@ -14,6 +14,14 @@ stopwords = list(STOP_WORDS)
 punctuation = punctuation + "\n"
 
 
+def spacy_rander(summary):
+
+    summ = nlp(summary)
+    rend = spacy_streamlit.visualize_ner(summ, labels=nlp.get_pipe("ner").labels, title="Summary Visualization", show_table=False)
+    
+    return rend
+
+
 def word_frequency(doc):
     word_frequencies = {}
 
@@ -58,10 +66,8 @@ def get_summary(text):
     summary  = nlargest(select_length, sentence_scores, key=sentence_scores.get)
     summary = [word.text  for word in summary]
     summary = " ".join(summary)
-    summ = nlp(summary)
-    rend = spacy_streamlit.visualize_ner(summ, labels=nlp.get_pipe("ner").labels)
 
-    return summary, rend
+    return summary
 
 
 

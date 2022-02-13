@@ -1,6 +1,6 @@
 from prometheus_client import Summary
 import streamlit as st
-from helper import get_summary
+from helper import get_summary, spacy_rander
 
 
 st.set_page_config(
@@ -31,7 +31,7 @@ if choice == "Custom Text Summarization":
         text = st.text_area(label="Enter Your Text or story", height=350, placeholder="Enter Your Text or story or your article iit can be of any length")
         
         if st.button("Get Summary and Headline"):
-            summary,rend = get_summary(text)
+            summary = get_summary(text)
     
             with col2:
                 try:
@@ -39,6 +39,8 @@ if choice == "Custom Text Summarization":
                     st.code(summary)
                     st.write("Text Headline")
                     st.code(len(text))
-                    rend
+
+                    with col1:
+                        rend = spacy_rander(summary)
                 except NameError:
                     pass
