@@ -1,12 +1,11 @@
-from cProfile import label
-from re import S
-import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
-from spacy import load, displacy
 import en_core_web_sm
 from string import punctuation
 from heapq import nlargest
 import spacy_streamlit
+import requests
+import json
+from bs4 import BeautifulSoup
 
 
 nlp= en_core_web_sm.load()
@@ -48,6 +47,36 @@ def sentence_score(sentence_tokens, word_frequencies):
                     sentence_score[sent] += word_frequencies[word.text.lower()]
     
     return sentence_score
+
+
+def fetch_news_links():
+    link_list = []
+
+    reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q=india&language=en&apiKey=3af9b5b135cc4e90b4a5d87807716cd1"
+
+    headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
+    }
+
+    payload = ""
+
+    response = requests.request("GET", reqUrl, data=payload,  headers=headersList).text
+    response = json.loads(response)
+
+    tw = 0
+    for i in range(len(response["articles"])):
+        if tw ==10:
+            pass
+        else:
+            if "/news/" in response["articles"][i]["url"]:
+                link_list.append(response["articles"][i]["url"])
+            else:
+                pass
+            tw += 1
+            
+    return link_list
+
 
 
 def get_summary(text):
