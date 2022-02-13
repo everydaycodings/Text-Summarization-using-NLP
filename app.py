@@ -18,7 +18,7 @@ st.set_page_config(
 
 st.sidebar.title("Text Summarization Web App")
 
-option = ["Custom Text Summarization", "News Summary and Headlines"]
+option = ["News Summary and Headlines", "Custom Text Summarization"]
 choice = st.sidebar.selectbox("Select of your choice", options=option)
 
 
