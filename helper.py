@@ -75,7 +75,7 @@ def fetch_news_links():
         if tw ==10:
             pass
         else:
-            if "/news/" in response["articles"][i]["url"]:
+            if "/news/" in response["articles"][i]["url"] and "stories" not in response["articles"][i]["url"]:
                 link_list.append(response["articles"][i]["url"])
             else:
                 pass
