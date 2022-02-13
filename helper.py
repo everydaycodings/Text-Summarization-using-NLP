@@ -60,13 +60,16 @@ def sentence_score(sentence_tokens, word_frequencies):
 
 
 @st.cache(allow_output_mutation=False)
-def fetch_news_links():
+def fetch_news_links(query):
     link_list = []
     title_list = []
     thumbnail_list = []
 
-    reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q=india&language=en&apiKey={}".format(news_api_key)
-
+    if query == "":
+        reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q=india&language=en&apiKey={}".format(news_api_key)
+    else:
+        reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q={}&language=en&apiKey={}".format(query, news_api_key)
+    
     headersList = {
     "Accept": "*/*",
     "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
@@ -95,9 +98,8 @@ def fetch_news_links():
 
 
 @st.cache(allow_output_mutation=False)
-def fetch_news():
+def fetch_news(link_list):
 
-    link_list, _, _ = fetch_news_links()
     news = []
     news_list = []
 
@@ -111,7 +113,7 @@ def fetch_news():
         payload = ""
 
         news_response = requests.request("GET", news_reqUrl, data=payload,  headers=headersList)
-        soup = BeautifulSoup(news_response.content, "html")
+        soup = BeautifulSoup(news_response.content, features="html.parser")
         soup.findAll("p", {"class":"ssrcss-1q0x1qg-Paragraph eq5iqo00"})
         soup.findAll("div", {"data-component":"text-block"})
         for para in soup.findAll("div", {"data-component":"text-block"}):

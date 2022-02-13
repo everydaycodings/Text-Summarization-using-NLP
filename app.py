@@ -48,27 +48,34 @@ if choice == "Custom Text Summarization":
 if choice == "News Summary and Headlines":
     st.title("BBC News Summary")
 
-    link, title, thumbnail = fetch_news_links()
-    fetch_news = fetch_news()
-    
-    col1, col2 = st.columns(2)
+    search_query = st.text_input("", placeholder="Enter the topic you want to search")
+    st.write(" ")
 
-    with col1:
-        for i in range(len(link)):
-            if (i % 2) == 0:
-                st.image(thumbnail[i])
-                st.write(title[i])
-                with st.expander("Read The Summary"):
-                    st.write(get_summary(fetch_news[i]))
-                st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
-                st.write(" ")
+    link, title, thumbnail = fetch_news_links(search_query)
+    fetch_news = fetch_news(link)
     
-    with col2:
-        for i in range(len(link)):
-            if (i % 2) != 0:
-                st.image(thumbnail[i])
-                st.write(title[i])
-                with st.expander("Read The Summary"):
-                    st.write(get_summary(fetch_news[i]))
-                st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
-                st.write(" ")
+    if link != []:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            for i in range(len(link)):
+                if (i % 2) == 0:
+                    st.image(thumbnail[i])
+                    st.write(title[i])
+                    with st.expander("Read The Summary"):
+                        st.write(get_summary(fetch_news[i]))
+                    st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
+                    st.write(" ")
+        
+        with col2:
+            for i in range(len(link)):
+                if (i % 2) != 0:
+                    st.image(thumbnail[i])
+                    st.write(title[i])
+                    with st.expander("Read The Summary"):
+                        st.write(get_summary(fetch_news[i]))
+                    st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
+                    st.write(" ")
+    
+    else:
+        st.info("No Result found for {} Please try some popular Keywords".format(search_query))
