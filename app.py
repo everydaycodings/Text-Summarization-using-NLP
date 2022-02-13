@@ -61,6 +61,7 @@ if choice == "News Summary and Headlines":
                 with st.expander("Read The Summary"):
                     st.write(get_summary(fetch_news[i]))
                 st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
+                st.write(" ")
     
     with col2:
         for i in range(len(link)):
@@ -70,3 +71,4 @@ if choice == "News Summary and Headlines":
                 with st.expander("Read The Summary"):
                     st.write(get_summary(fetch_news[i]))
                 st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
+                st.write(" ")
