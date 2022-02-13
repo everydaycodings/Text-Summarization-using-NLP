@@ -7,6 +7,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import configparser
+import streamlit as st
 
 
 nlp= en_core_web_sm.load()
@@ -27,6 +28,7 @@ def spacy_rander(summary):
     return rend
 
 
+
 def word_frequency(doc):
     word_frequencies = {}
 
@@ -39,6 +41,8 @@ def word_frequency(doc):
                     word_frequencies[word.text] += 1
     
     return word_frequencies
+
+
 
 
 def sentence_score(sentence_tokens, word_frequencies):
@@ -55,8 +59,11 @@ def sentence_score(sentence_tokens, word_frequencies):
     return sentence_score
 
 
+@st.cache(allow_output_mutation=False)
 def fetch_news_links():
     link_list = []
+    title_list = []
+    thumbnail_list = []
 
     reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q=india&language=en&apiKey={}".format(news_api_key)
 
@@ -77,16 +84,20 @@ def fetch_news_links():
         else:
             if "/news/" in response["articles"][i]["url"] and "stories" not in response["articles"][i]["url"]:
                 link_list.append(response["articles"][i]["url"])
+                title_list.append(response["articles"][i]["title"])
+                thumbnail_list.append(response["articles"][i]["urlToImage"])
             else:
                 pass
             tw += 1
 
-    return link_list
+    return link_list, title_list, thumbnail_list
 
 
+
+@st.cache(allow_output_mutation=False)
 def fetch_news():
 
-    link_list = fetch_news_links()
+    link_list, _, _ = fetch_news_links()
     news = []
     news_list = []
 
@@ -112,6 +123,8 @@ def fetch_news():
     return news_list
 
 
+
+
 def get_summary(text):
     
     doc = nlp(text)
@@ -124,7 +137,7 @@ def get_summary(text):
     sentence_scores = sentence_score(sentence_tokens, word_frequencies)
 
     
-    select_length = int(len(sentence_tokens)*0.15)
+    select_length = int(len(sentence_tokens)*0.10)
     summary  = nlargest(select_length, sentence_scores, key=sentence_scores.get)
     summary = [word.text  for word in summary]
     summary = " ".join(summary)

@@ -1,6 +1,6 @@
 from prometheus_client import Summary
 import streamlit as st
-from helper import get_summary, spacy_rander
+from helper import get_summary, spacy_rander, fetch_news, fetch_news_links
 
 
 st.set_page_config(
@@ -44,3 +44,29 @@ if choice == "Custom Text Summarization":
             
         except NameError:
             pass
+
+if choice == "News Summary and Headlines":
+    st.title("BBC News Summary")
+
+    link, title, thumbnail = fetch_news_links()
+    fetch_news = fetch_news()
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        for i in range(len(link)):
+            if (i % 2) == 0:
+                st.image(thumbnail[i])
+                st.write(title[i])
+                with st.expander("Read The Summary"):
+                    st.write(get_summary(fetch_news[i]))
+                st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
+    
+    with col2:
+        for i in range(len(link)):
+            if (i % 2) != 0:
+                st.image(thumbnail[i])
+                st.write(title[i])
+                with st.expander("Read The Summary"):
+                    st.write(get_summary(fetch_news[i]))
+                st.markdown("[**Read Full Article**]({})".format(link[i]), unsafe_allow_html=True)
