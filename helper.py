@@ -6,11 +6,17 @@ import spacy_streamlit
 import requests
 import json
 from bs4 import BeautifulSoup
+import configparser
 
 
 nlp= en_core_web_sm.load()
 stopwords = list(STOP_WORDS)
 punctuation = punctuation + "\n"
+
+config = configparser.ConfigParser()
+config.read("config.ini")
+news_api_key = config["API"]["news_api"]
+
 
 
 def spacy_rander(summary):
@@ -52,7 +58,7 @@ def sentence_score(sentence_tokens, word_frequencies):
 def fetch_news_links():
     link_list = []
 
-    reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q=india&language=en&apiKey=3af9b5b135cc4e90b4a5d87807716cd1"
+    reqUrl = "https://newsapi.org/v2/everything?sources=bbc-news&q=india&language=en&apiKey={}".format(news_api_key)
 
     headersList = {
     "Accept": "*/*",
@@ -74,7 +80,7 @@ def fetch_news_links():
             else:
                 pass
             tw += 1
-            
+
     return link_list
 
 
