@@ -84,6 +84,33 @@ def fetch_news_links():
     return link_list
 
 
+def fetch_news():
+
+    link_list = fetch_news_links()
+    news = []
+    news_list = []
+
+    for i in range(len(link_list)):
+        news_reqUrl = link_list[i]
+        headersList = {
+        "Accept": "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
+        }
+
+        payload = ""
+
+        news_response = requests.request("GET", news_reqUrl, data=payload,  headers=headersList)
+        soup = BeautifulSoup(news_response.content, "html")
+        soup.findAll("p", {"class":"ssrcss-1q0x1qg-Paragraph eq5iqo00"})
+        soup.findAll("div", {"data-component":"text-block"})
+        for para in soup.findAll("div", {"data-component":"text-block"}):
+                news.append(para.find("p").getText())
+        joinnews = " ".join(news)
+        news_list.append(joinnews)
+        news.clear()
+    
+    return news_list
+
 
 def get_summary(text):
     doc = nlp(text)
