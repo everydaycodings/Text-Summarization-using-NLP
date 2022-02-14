@@ -9,8 +9,8 @@ st.set_page_config(
      layout="wide",
      initial_sidebar_state="expanded",
      menu_items={
-         'Get Help': 'https://github.com/everydaycodings/Data-Analysis-Web-App',
-         'Report a bug': "https://github.com/everydaycodings/Data-Analysis-Web-App/issues/new",
+         'Get Help': 'https://github.com/everydaycodings/Text-Summarization-using-NLP',
+         'Report a bug': "https://github.com/everydaycodings/Text-Summarization-using-NLP/issues/new",
          'About': "# This is a header. This is an *extremely* cool app!"
      }
 )
