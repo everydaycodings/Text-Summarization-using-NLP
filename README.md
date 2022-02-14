@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8-blueviolet)
 ![Framework](https://img.shields.io/badge/Framework-sreamlit-red)
-![Spacy](https://img.shields.io/badge/Framework-sreamlit-blue)
+![Spacy](https://img.shields.io/badge/Framework-Spacy-blue)
 
 
 #### **Text Summarization using NLP**  using NLP with Spacy Libarary to Summarize The text. 
