@@ -5,8 +5,7 @@
 ![Spacy](https://img.shields.io/badge/Library-Spacy-blue)
 
 
-#### **Text Summarization using NLP**  using NLP with Spacy library to Summarize The text. 
-
+#### **Text Summarization using NLP** to fetch BBC News Article and summarize its text and also it includes custom article Summarization
 
 ## Features Of Data Analysis Web App
 - Get your **custom Text Summarized**.
