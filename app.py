@@ -38,7 +38,7 @@ if choice == "Custom Text Summarization":
                 st.write("Text Summary (Summary length: {})".format(len(summary)))
                 st.code(summary)
                 st.write("Text Headline")
-                st.code(len(text))
+                st.code("Feature Comming Soon")
 
             rend = spacy_rander(summary)
             
