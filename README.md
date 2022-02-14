@@ -17,7 +17,7 @@
 Check out the live demo: https://twitter--sentiment--analysiss.herokuapp.com/
 
 ### Vedio demo:
-<p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/demo.gif" width="800" height="450" /></p>
+<p><img  alt="GIF" src="https://github.com/everydaycodings/Text-Summarization-using-NLP/blob/master/presentation/demo.gif" width="800" height="450" /></p>
 
 # Note
 
@@ -44,7 +44,7 @@ news_api = Your Keys
 6. You will be automatically redirected the your localhost in brower where you can see you WebApp in live.
 
 ## Architecture of your Project Home Directory
-<p><img  alt="GIF" src="https://github.com/everydaycodings/Twitter-Sentimental-Analysis-WebApp/blob/master/presentation/pic1.png" width="240" height="410" /></p>
+<p><img  alt="GIF" src="https://github.com/everydaycodings/Text-Summarization-using-NLP/blob/master/presentation/arc.png" width="240" height="410" /></p>
 
 
 ### If you Use this Code for Any Commercial Purpose. Please Don't Forget To mention or give shoutout to [everydaycodings](https://github.com/everydaycodings).
