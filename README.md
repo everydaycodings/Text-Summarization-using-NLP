@@ -14,7 +14,7 @@
 
 
 
-Check out the live demo: https://twitter--sentiment--analysiss.herokuapp.com/
+Check out the live demo: https://text--summarization.herokuapp.com/
 
 ### Vedio demo:
 <p><img  alt="GIF" src="https://github.com/everydaycodings/Text-Summarization-using-NLP/blob/master/presentation/demo.gif" width="800" height="450" /></p>
