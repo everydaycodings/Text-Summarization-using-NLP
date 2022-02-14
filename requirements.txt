@@ -1,7 +1,6 @@
 streamlit
 configparser
 bs4
-json
 requests
 spacy_streamlit
 spacy
