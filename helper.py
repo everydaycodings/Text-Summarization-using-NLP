@@ -1,3 +1,4 @@
+from random import random
 from spacy.lang.en.stop_words import STOP_WORDS
 import en_core_web_sm
 from string import punctuation
@@ -8,6 +9,7 @@ import json
 from bs4 import BeautifulSoup
 import configparser
 import streamlit as st
+import random
 
 
 nlp= en_core_web_sm.load()
@@ -20,10 +22,14 @@ news_api_key = config["API"]["news_api"]
 
 
 
-def spacy_rander(summary):
+def spacy_rander(summary, text=None):
 
     summ = nlp(summary)
-    rend = spacy_streamlit.visualize_ner(summ, labels=nlp.get_pipe("ner").labels, title="Summary Visualization", show_table=False)
+    if text == "Yes":
+        rend = spacy_streamlit.visualize_ner(summ, labels=nlp.get_pipe("ner").labels, title="Full Article Visualization", show_table=False, key=random.randint(0, 10))
+    
+    else:
+        rend = spacy_streamlit.visualize_ner(summ, labels=nlp.get_pipe("ner").labels, title="Summary Visualization", show_table=False, key=random.randint(0, 100))
     
     return rend
 

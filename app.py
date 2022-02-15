@@ -40,7 +40,10 @@ if choice == "Custom Text Summarization":
                 st.write("Text Headline")
                 st.code("Feature Comming Soon")
 
-            rend = spacy_rander(summary)
+            spacy_rander(summary)
+
+            #with st.expander("Get Original Article Analysis"):
+            spacy_rander(text, text="Yes")
             
         except NameError:
             pass
