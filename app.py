@@ -23,6 +23,8 @@ choice = st.sidebar.selectbox("Select of your choice", options=option)
 
 
 if choice == "Custom Text Summarization":
+    st.sidebar.markdown("Copy Sample Article if you want to test the web app. [[article source](https://edition.cnn.com/2022/02/14/us/new-mexico-albuquerque-stabbings/index.html)]")
+    st.sidebar.code(open("presentation/sample.txt","r").read())
     st.title("Welcome to {}".format(choice))
 
     col1, col2 = st.columns(2)
