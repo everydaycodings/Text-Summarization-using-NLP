@@ -1,4 +1,3 @@
-from prometheus_client import Summary
 import streamlit as st
 from helper import get_summary, spacy_rander, fetch_news, fetch_news_links
 
