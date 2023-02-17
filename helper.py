@@ -1,6 +1,6 @@
 from random import random
 from spacy.lang.en.stop_words import STOP_WORDS
-import en_core_web_sm
+#import en_core_web_sm
 from string import punctuation
 from heapq import nlargest
 import spacy_streamlit
@@ -12,7 +12,7 @@ import streamlit as st
 import random
 
 
-nlp= en_core_web_sm.load()
+nlp= spacy.load("en_core_web_sm")
 stopwords = list(STOP_WORDS)
 punctuation = punctuation + "\n"
 
