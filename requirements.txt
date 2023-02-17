@@ -1,3 +1,4 @@
+streamlit
 configparser
 bs4
 requests
